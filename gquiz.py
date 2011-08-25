@@ -41,7 +41,6 @@ def calculate_distinct_and_interesting(pseudonumbers):
         value = calculate_value(pseudonumber)
         if is_interesting(value):
             magic_bag.append(pseudonumber)
-
     return len(set(magic_bag))
 
 
