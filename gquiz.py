@@ -28,18 +28,18 @@ def calculate_distinct_and_interesting(pseudonumbers):
     def is_interesting(pseudonumber):
         return (pseudonumber >= 665180) and (pseudonumber % 4 == 0)
 
-    magic_bag = []
-    for pseudonumber in pseudonumbers.split():
-        mdigits = []
-        for digit in pseudonumber:
-            mdigits.append(alpha.index(digit))
-
+    def calculate_value(pseudonumber):
+        mdigits = [alpha.index(digit) for digit in pseudonumber]
         total, base = 0, 1
         for digit in mdigits:
             total += digit * base
             base *= 20
+        return total
 
-        if is_interesting(total):
+    magic_bag = []
+    for pseudonumber in pseudonumbers.split():
+        value = calculate_value(pseudonumber)
+        if is_interesting(value):
             magic_bag.append(pseudonumber)
 
     return len(set(magic_bag))
